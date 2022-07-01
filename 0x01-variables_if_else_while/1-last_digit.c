@@ -1,17 +1,30 @@
-nclude "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 /**
-*main - Begin Here
-*print a-z and A-Z using putchar
-*Return: Value 0 (true)
+*main - Start here
+*Random generated numbers and check if positive, zero or negative.
+*Return: value 0 (Accept)
 **/
 int main(void)
-
 {
-	char ch = 'a';
-	while (ch <= 'z')
+	int n;
+	int last;
+
+	srand(time(0));
+	n = rand() - RAND_MAX / 2;
+	last = n % 10;
+	if (last < 6 && last != 0)
 	{
-		_putchar(ch);
-		ch++;
+		printf("Last digit of %d is %d and is less than 6 and not 0\n", n, last);
 	}
-	_putchar('\n');
+	else  if (last > 5)
+	{
+		printf("Last digit of %d is %d and is greater than 5\n", n, last);
+	}
+	else
+	{
+		printf("Last digit of %d is %d and is 0\n", n, last);
+	}
+	return (0);
 }
