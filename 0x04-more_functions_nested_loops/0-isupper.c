@@ -6,7 +6,6 @@
 * Return: value 0 if false and 1 if true
 */
 int _isupper(int c)
-
 {
 	if (c >= 'A' && c <= 'Z')
 	{
