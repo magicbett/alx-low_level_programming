@@ -1,45 +1,59 @@
 #include <stdio.h>
 #include <stdlib.h>
-/**
-* main - prints the minimum number of coins to make change for a given amount
-* @argc: arguement count
-* @argv: array of pointers to arguement strings
-* Return: number of coins or 1
-**/
-int main(int argc, char *argv[])
-{
-	int amount = atoi(argv[1]);
-	int coins = 0;
 
-	if (argc == 1 || argc > 2)
+/**
+ * isInteger - checks if s is an integer
+ * @s: string to check
+ * Return: 0 or 1
+ */
+
+int isInteger(const char *s)
+{
+	int i = 0;
+
+
+	while (s[i] != '\0')
+	{
+		if (s[i] < '0' || s[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+/**
+ * main - adds positive numbers
+ * @argc: int
+ * @argv: list
+ * Return: 0
+ */
+
+int main(int argc, char const *argv[])
+{
+	int i = 0, coinUsed = 0, coin = 0;
+	int coins[] = {25, 10, 5, 2, 1};
+
+	if (argc != 2)
 	{
 		printf("Error\n");
 		return (1);
 	}
-	if (amount <= 0)
-		coins = 0;
-	if (amount >= 25)
+	if (isInteger(argv[1]))
 	{
-		while (amount >= 25)
-			amount -= 25, coins++;
+		i = atoi(argv[1]);
+		while (i > 0 && coin <= 4)
+		{
+			if (i >= coins[coin])
+			{
+				i -= coins[coin];
+				coinUsed++;
+			}
+			else
+			{
+				coin++;
+			}
+		}
 	}
-	if (amount >= 10 && amount < 25)
-	{
-		while (amount >= 10)
-			amount -= 10, coins++;
-	}
-	if (amount >= 5 && amount < 10)
-	{
-		while (amount >= 5)
-			amount -= 5, coins++;
-	}
-	if (amount >= 2 && amount < 5)
-	{
-		while (amount >= 2)
-			amount -= 2, coins++;
-	}
-	if (amount == 1)
-		coins++;
-	printf("%d\n", coins);
+	printf("%i\n", coinUsed);
 	return (0);
 }

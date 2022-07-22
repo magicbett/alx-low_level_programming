@@ -1,30 +1,46 @@
 #include <stdio.h>
 #include <stdlib.h>
-/**
-* main -  Prints number of arguements
-* @argc: arguement count
-* @argv: array of pointers to CLI arguement
-* Return: 0
-**/
-int main(int argc, char *argv[])
-{
-int sum = 0;
 
-if (argc == 1)
+/**
+ * isInteger - checks if s is an integer
+ * @s: string to check
+ * Return: 0 or 1
+ */
+
+int isInteger(const char *s)
 {
-	printf("0\n");
+	int i = 0;
+
+	while (s[i] != '\0')
+	{
+		if (s[i] < '0' || s[i] > '9')
+			return (1);
+		i++;
+	}
 	return (0);
 }
-while (--argc)
+
+/**
+ * main - adds positive numbers
+ * @argc: int
+ * @argv: list
+ * Return: 0
+ */
+
+int main(int argc, char const *argv[])
 {
-	if (*argv[argc] >= 'a' && *argv[argc] <= 'z')
+	int sum = 0;
+
+	while (--argc)
+
 	{
-		printf("%s\n", "Error");
-		return (1);
+		if (isInteger(argv[argc]))
+		{
+			printf("Error\n");
+			return (1);
+		}
+		sum += atoi(argv[argc]);
 	}
-	else
-		sum += (atoi(argv[argc]));
-}
-printf("%d\n", sum);
-return (0);
+	printf("%i\n", sum);
+	return (0);
 }
