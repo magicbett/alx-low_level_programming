@@ -1,28 +1,32 @@
-#include <stdio.h>
+#include "main.h"
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
 /**
-* main -  Prints mul of arguements
-* @argc: arguement count
-* @argv: array of pointers to CLI arguement
-* Return: 0
-**/
+ * main - multiplies two positive numbers
+ * @argc: n arguments
+ * @argv: args
+ * Return: int
+ */
 int main(int argc, char *argv[])
 {
-	if (argc <= 2 || argc > 3)
+unsigned long mul;
+int i, j;
+	if (argc != 3)
+	{ printf("Error\n");
+	exit(98); }
+	for (i = 1; i < argc; i++)
 	{
-		printf("%s\n", "Error");
-			return (98);
+		for (j = 0; argv[i][j] != '\0'; j++)
+		{
+			if (argv[i][j] > 57 || argv[i][j] < 48)
+			{  printf("Error\n");
+			exit(98); }
+		}
+
 	}
-	else if ((atoi(argv[argc - 1]) * atoi(argv[argc - 2])) > 0)
-	{
-		printf("%d\n", (atoi(argv[argc - 1]) * atoi(argv[argc - 2])));
-		return (0);
-	}
-	if ((*argv[argc - 1] == '0') ||  (*argv[argc - 2]) == '0')
-	{
-		printf("%d\n", (atoi(argv[argc - 1]) * atoi(argv[argc - 2])));
-		return (0);
-	}
-	printf("%s\n", "Error");
-	return (98);
+	mul = atol(argv[1]) * atol(argv[2]);
+	printf("%lu\n", mul);
+return (0);
 }
